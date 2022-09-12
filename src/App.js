@@ -47,7 +47,7 @@ function App() {
     if (deviceLocation.length !== 0) {
       fetchResults();
     }
-  }, [deviceLocation]);
+  });
 
   // gets location data for device
   async function fetchResults() {
@@ -112,7 +112,7 @@ function App() {
 
   useEffect(() => {
     getInitialLocation();
-  }, []);
+  });
 
   return (
     <div className="bg-blue-400 flex h-full">
