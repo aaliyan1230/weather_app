@@ -115,7 +115,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-blue-400">
+    <div className="bg-blue-400 flex h-full">
       <div className="App">
         <Header
           errorLoading={errorLoading}
