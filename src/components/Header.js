@@ -24,7 +24,7 @@ const Header = (props) => {
           src="https://img.icons8.com/ios-filled/50/000000/marker.png"
         ></img>
         <input
-        className="b p-1 rounded-md"
+        className="b p-1 rounded-md bg-blue-900"
           placeholder="city..."
           onKeyPress={(e) =>
             e.key === "Enter" && e.target.value !== ""

@@ -14,7 +14,7 @@ function App() {
   const [hour, setHour] = useState("");
 
   const api = (v) =>
-    `https://api.openweathermap.org/data/2.5/weather?q=${v}&appid=3069ae2718e40f8dc1998b7250e16f10&units=metric`;
+    `https://api.openweathermap.org/data/2.5/weather?q=${v}&appid=fc64f2a7281d28c22448a88a0443cd61&units=metric`;
   const myInit = { mode: "cors" };
   const myRequest = (v) => new Request(api(v), myInit);
 
@@ -54,7 +54,7 @@ function App() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${deviceLocation[0]}&lon=${deviceLocation[1]}&appid=3069ae2718e40f8dc1998b7250e16f10&units=metric`,
+        `https://api.openweathermap.org/data/2.5/weather?lat=${deviceLocation[0]}&lon=${deviceLocation[1]}&appid=fc64f2a7281d28c22448a88a0443cd61&units=metric`,
         myInit
       );
       if (!response.ok) {
@@ -92,30 +92,31 @@ function App() {
   }
 
   // initial location
-  async function getInitialLocation() {
-    setIsLoading(true);
-    try {
-      const response = await fetch(api("london"), myInit);
-      if (!response.ok) {
-        throw new Error("bad network request");
-      }
-      const data = await response.json();
-      setErrorLoading(false);
-      setLocation(data);
-      setIsLoading(false);
-    } catch (e) {
-      setErrorLoading(true);
-      setIsLoading(false);
-      console.error(e);
-    }
-  }
+
 
   useEffect(() => {
+    async function getInitialLocation() {
+      setIsLoading(true);
+      try {
+        const response = await fetch(api("karachi"), {mode:"cors"});
+        if (!response.ok) {
+          throw new Error("bad network request");
+        }
+        const data = await response.json();
+        setErrorLoading(false);
+        setLocation(data);
+        setIsLoading(false);
+      } catch (e) {
+        setErrorLoading(true);
+        setIsLoading(false);
+        console.error(e);
+      }
+    }
     getInitialLocation();
-  });
+  }, []);
 
   return (
-    <div className="bg-blue-400 flex h-full">
+    <div className="bg-blue-400">
       <div className="App">
         <Header
           errorLoading={errorLoading}
